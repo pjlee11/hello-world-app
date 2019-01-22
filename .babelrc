@@ -1,0 +1,47 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "useBuiltIns": true,
+        "targets": {
+          "browsers": [
+            "chrome >= 53",
+            "firefox >= 45.0",
+            "ie >= 11",
+            "edge >= 37",
+            "safari >= 9",
+            "opera >= 40",
+            "op_mini >= 18",
+            "Android >= 7",
+            "and_chr >= 53",
+            "and_ff >= 49",
+            "ios_saf >= 10"
+          ]
+        }
+      }
+    ],
+    "babel-preset-react" // transform JSX to JS
+  ],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true, // avoid checksum mismatches (different class generation between client & server)
+        "fileName": false // prevent filename forming part of class name (duplication)
+      }
+    ],
+    "babel-plugin-syntax-dynamic-import", // allows `await import()`
+    "babel-plugin-dynamic-import-node", // allows `return import()`
+    "transform-object-rest-spread", // allows ...spread notation
+    [
+      // polyfills code without polluting globals
+      // https://stackoverflow.com/a/36821986
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ]
+}
