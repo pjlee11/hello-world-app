@@ -1,3 +1,4 @@
-// import simorghRendererClient from "simorgh-renderer/client";
+import { routes } from "./app/routes";
+import { getSimorghClient } from "simorgh-renderer";
 
-// simorghRendererClient();
+const client = getSimorghClient(routes);

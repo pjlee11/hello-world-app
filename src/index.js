@@ -1,16 +1,5 @@
-import { getServer } from "simorgh-renderer";
-// import appRoutes, { regexPath } from "./app/routes";
-// import documentComponent from "./app/components/Document";
+import Document from "./app/components/Document";
+import { routes, regexPath } from "./app/routes";
+import { getLocalServer } from "simorgh-renderer";
 
-// const routes = appRoutes.routes;
-
-// const mockDataPath = `${regexPath}.json`;
-
-// console.log(simorghRenderer);
-// simorghRenderer(routes, mockDataPath, documentComponent);
-
-// how is dotenv going to be used?
-
-// console.log(simorghRenderer());
-
-// console.log(simorghRenderer);
+const localServer = getLocalServer(routes, regexPath, Document);

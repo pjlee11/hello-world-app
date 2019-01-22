@@ -1,3 +1,3 @@
-// import simorghRendererServer from "simorgh-renderer/server";
+import { getSimorghServer } from "simorgh-renderer";
 
-// simorghRendererServer();
+const appServer = getSimorghServer();
