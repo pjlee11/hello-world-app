@@ -61,6 +61,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
+    "@babel/plugin-transform-regenerator": "^7.0.0",
     "@storybook/react": "4.0.0-alpha.8",
     "amphtml-validator": "^1.0.23",
     "audit-ci": "^1.2.1",

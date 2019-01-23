@@ -9,7 +9,7 @@ const serviceRegex = Object.keys(services)
 // this gets passed to universal-react-app which passes the regex on to react-router-config
 export const regexPath = `/:service(${serviceRegex})/:id?`;
 
-export const routes = [
+const routes = [
   {
     path: regexPath, // the path for react-router to match against with named params EG: :service
     exact: true,
@@ -17,3 +17,5 @@ export const routes = [
     getInitialData // a method which defines the URL to get data from and the params to pass through to the component
   }
 ];
+
+export default routes;

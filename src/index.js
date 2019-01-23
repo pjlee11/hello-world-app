@@ -1,5 +1,10 @@
 import Document from "./app/components/Document";
-import { routes, regexPath } from "./app/routes";
-import { getLocalServer } from "simorgh-renderer";
+import routes, { regexPath } from "./app/routes";
 
-const localServer = getLocalServer(routes, regexPath, Document);
+// setup global variables for simorgh-renderer to use at build time
+global.documentComponent = Document;
+global.regexPath = regexPath;
+global.routes = routes;
+
+// inject simorgh-renderer/index and instantly execute
+require("simorgh-renderer/index");

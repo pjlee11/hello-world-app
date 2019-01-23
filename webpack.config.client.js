@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const dotenv = require("dotenv");
-const { getClientEnvVars } = require("./src/clientEnvVars");
+const { getClientEnvVars } = require("simorgh-renderer/utility");
 
 const dotenvConfig = dotenv.config();
 
@@ -20,11 +20,17 @@ module.exports = ({ resolvePath, IS_CI, IS_PROD, START_DEV_SERVER }) => {
     node: { fs: "empty" },
     entry: START_DEV_SERVER
       ? [
+          // stop hoisting before polyfill runs https://github.com/babel/babel-preset-env/issues/112#issuecomment-292675082
+          "babel-polyfill",
           `webpack-dev-server/client?http://localhost:${webpackDevServerPort}`,
           "webpack/hot/only-dev-server",
           "./src/client"
         ]
-      : ["./src/client"],
+      : [
+          // stop hoisting before polyfill runs https://github.com/babel/babel-preset-env/issues/112#issuecomment-292675082
+          "babel-polyfill",
+          "./src/client"
+        ],
     devServer: {
       host: "localhost",
       port: webpackDevServerPort,

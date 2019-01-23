@@ -4,7 +4,14 @@ const nodeExternals = require("webpack-node-externals");
 module.exports = ({ resolvePath, START_DEV_SERVER }) => {
   const serverConfig = {
     target: "node", // compile for server environment
-    entry: START_DEV_SERVER ? ["webpack/hot/poll?100", "./src"] : ["./src"],
+    entry: START_DEV_SERVER
+      ? [
+          // stop hoisting before polyfill runs https://github.com/babel/babel-preset-env/issues/112#issuecomment-292675082
+          "babel-polyfill",
+          "webpack/hot/poll?100",
+          "./src"
+        ]
+      : ["babel-polyfill", "./src"],
     output: {
       path: resolvePath("build"),
       filename: "server.js"
@@ -15,10 +22,7 @@ module.exports = ({ resolvePath, START_DEV_SERVER }) => {
        * And therefore stops `node_modules` being watched for file changes
        */
       nodeExternals({
-        whitelist: [
-          "webpack/hot/poll?100",
-          "simorgh-renderer" // tell webpack to bundle the simorgh-renderer src code
-        ]
+        whitelist: ["webpack/hot/poll?100"]
       })
     ],
     watch: true

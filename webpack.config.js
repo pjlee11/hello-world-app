@@ -61,19 +61,6 @@ module.exports = (shell = {}) => {
               }
             }
           ]
-        },
-        {
-          test: /\.(js|jsx|mjs)$/,
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                babelrc: true,
-                cacheDirectory: true,
-                presets: []
-              }
-            }
-          ]
         }
       ]
     },
