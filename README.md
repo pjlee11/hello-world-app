@@ -45,6 +45,7 @@ webpack.config.server.js
 ### File breakdown
 
 | Filename | Purpose |
+| -------- | ------- |
 | src/client.js | Entry point for webpack.config.client.js by default should contain `require(simorgh-renderer/client.js)` |
 | src/index.js | Entry point for webpack.config.server.js sets up global varaibles needed for simorgh-renderer to create your application, also requires `simorgh-renderer/index.js` which creates the local server and application express server |
 | webpack.config.server.js | Webpack config bespoke to the server |
