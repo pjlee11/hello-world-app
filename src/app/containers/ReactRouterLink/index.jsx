@@ -10,21 +10,16 @@ const ReactRouteLinkContainer = ({ href, text }) => {
     end: false,
   });
 
-  console.log('ReactRouteLinkContainer');
-
   const result = regexp.exec(href);
 
-  console.log(result);
   // if URL matches a valid route, use a react-router link
   if (result) {
     // the path is the first item in the array
     const path = result[0];
-    console.log('created a React Router link');
     return <Link to={path}>{text}</Link>;
   }
 
   // else return a normal hyperlink
-  console.log('created a normal hyperlink');
   return <Link href={href}>{text}</Link>;
 };
 
