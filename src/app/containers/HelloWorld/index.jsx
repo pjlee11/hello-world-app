@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { bool, string, obj } from 'prop-types';
 import HelloWorld from '../../components/HelloWorld';
+import ReactRouterLink from '../../containers/ReactRouterLink';
 
 /*
   [1] This handles async data fetching, and a 'loading state', which we should look to handle more intelligently.
@@ -11,13 +12,14 @@ const HelloWorldContainer = ({ loading, error, data }) => {
   if (data) {
     // the object data
     const { data: pageData } = data;
-    const { title, subHeading } = pageData;
+    const { title, subHeading, link } = pageData;
 
     return (
       <Fragment>
         <HelloWorld>{title}</HelloWorld>
         <h2>{subHeading}</h2>
         <p>{JSON.stringify(pageData)}</p>
+        <ReactRouterLink href={link} text={'SPA link'} />
       </Fragment>
     );
   }
