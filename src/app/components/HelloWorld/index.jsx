@@ -7,6 +7,7 @@ import { string } from 'prop-types';
 import styled from 'styled-components';
 
 const Title = styled.h1`
+  font-family: ReithSansNewsRegular;
   font-size: 32px;
   line-height: 36px;
   color: #000000;

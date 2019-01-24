@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { bool, string, object } from 'prop-types';
 import HelloWorld from '../../components/HelloWorld';
 import ReactRouterLink from '../../containers/ReactRouterLink';
+import GlobalStyle from '../../lib/globalStyles';
 
 /*
   [1] This handles async data fetching, and a 'loading state', which we should look to handle more intelligently.
@@ -16,6 +17,7 @@ const HelloWorldContainer = ({ loading, error, data }) => {
 
     return (
       <Fragment>
+        <GlobalStyle />
         <HelloWorld>{title}</HelloWorld>
         <h2>{subHeading}</h2>
         <p>{JSON.stringify(pageData)}</p>
