@@ -1,4 +1,5 @@
 {
   "title": "Hello world app",
-  "subHeading": "The following is the JSON data building this page 🎉"
+  "subHeading": "The following is the JSON data building this page 🎉",
+  "link": "/persian/helloWorld"
 }
