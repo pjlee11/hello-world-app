@@ -1,8 +1,12 @@
+/*
+ * TO DO: load the webpack config in from `simorgh-render/webpack/*`
+ */
+
 /* eslint-disable import/no-dynamic-require, global-require */
-const merge = require("webpack-merge");
-const fs = require("fs");
-const path = require("path");
-const dotenv = require("dotenv");
+const merge = require('webpack-merge');
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolvePath = relativePath => path.resolve(appDirectory, relativePath);
@@ -16,7 +20,7 @@ if (result.error) {
 
 // `shell` parameter populated via CLI, e.g. --env.platform=web
 module.exports = (shell = {}) => {
-  const IS_PROD = process.env.NODE_ENV === "production";
+  const IS_PROD = process.env.NODE_ENV === 'production';
   const IS_CI = process.env.CI;
   const START_DEV_SERVER = !IS_PROD;
   const CONFIG_FILE = shell.config;
@@ -34,15 +38,15 @@ module.exports = (shell = {}) => {
         version: false,
         warnings: true,
         colors: true, // color the console output in terminal
-        entrypoints: false
+        entrypoints: false,
       };
 
   const baseConfig = {
-    mode: IS_PROD ? "production" : "development",
-    devtool: IS_PROD ? "source-map" : "cheap-eval-source-map",
-    resolve: { extensions: [".js", ".jsx"] }, // resolves `import '../Foo'` to `../Foo/index.jsx`
+    mode: IS_PROD ? 'production' : 'development',
+    devtool: IS_PROD ? 'source-map' : 'cheap-eval-source-map',
+    resolve: { extensions: ['.js', '.jsx'] }, // resolves `import '../Foo'` to `../Foo/index.jsx`
     devServer: {
-      stats
+      stats,
     },
     stats,
     module: {
@@ -53,24 +57,24 @@ module.exports = (shell = {}) => {
           include: [/src/],
           use: [
             {
-              loader: "babel-loader",
+              loader: 'babel-loader',
               options: {
                 babelrc: true,
                 cacheDirectory: true,
-                presets: []
-              }
-            }
-          ]
-        }
-      ]
+                presets: [],
+              },
+            },
+          ],
+        },
+      ],
     },
     // This is to override bundle performance test. @TODO explain better
     performance: IS_CI
       ? {
           maxAssetSize: 245760, // 240kb - individual bundles
-          maxEntrypointSize: 491520 // 480kb - total bundles
+          maxEntrypointSize: 491520, // 480kb - total bundles
         }
-      : undefined
+      : undefined,
   };
 
   const mergeIntoBaseConfig = app => {
@@ -78,7 +82,7 @@ module.exports = (shell = {}) => {
       resolvePath,
       IS_PROD,
       IS_CI,
-      START_DEV_SERVER
+      START_DEV_SERVER,
     });
     return merge(baseConfig, specialisedConfig);
   };
@@ -88,5 +92,5 @@ module.exports = (shell = {}) => {
     return mergeIntoBaseConfig(CONFIG_FILE);
   }
   // else compile both (we've run `webpack` on its own)
-  return ["client", "server"].map(mergeIntoBaseConfig);
+  return ['client', 'server'].map(mergeIntoBaseConfig);
 };
