@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { bool, string, obj } from 'prop-types';
+import { bool, string, object } from 'prop-types';
 import HelloWorld from '../../components/HelloWorld';
 import ReactRouterLink from '../../containers/ReactRouterLink';
 
@@ -30,7 +30,7 @@ const HelloWorldContainer = ({ loading, error, data }) => {
 HelloWorldContainer.propTypes = {
   loading: bool,
   error: string,
-  data: obj,
+  data: object,
 };
 
 HelloWorldContainer.defaultProps = {
