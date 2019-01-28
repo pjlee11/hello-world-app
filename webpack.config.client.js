@@ -1,5 +1,5 @@
 /*
- * TO DO: load the webpack config in from `simorgh-render/webpack/*`
+ * TO DO: load the webpack config in from `SPARTACUS_-render/webpack/*`
  */
 
 /* eslint-disable global-require */
@@ -7,7 +7,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const { getClientEnvVars } = require('simorgh-renderer/utility');
+const { getClientEnvVars } = require('@bbc/spartacus/utility');
 
 const dotenvConfig = dotenv.config();
 
@@ -41,7 +41,7 @@ module.exports = ({ resolvePath, IS_CI, IS_PROD, START_DEV_SERVER }) => {
       filename: 'static/js/[name].[hash:8].js',
       // need full URL for dev server & HMR: https://github.com/webpack/docs/wiki/webpack-dev-server#combining-with-an-existing-server
       publicPath: IS_PROD
-        ? `${process.env.SIMORGH_PUBLIC_STATIC_ASSETS_PATH}/`
+        ? `${process.env.SPARTACUS_PUBLIC_STATIC_ASSETS_PATH}/`
         : `http://localhost:${webpackDevServerPort}/`,
     },
     optimization: {
@@ -101,7 +101,7 @@ module.exports = ({ resolvePath, IS_CI, IS_PROD, START_DEV_SERVER }) => {
       //     "https://gel.files.bbci.co.uk/r2.302/BBCReithSerif_W_Md.woff"
       //     /* Unused fonts
       //       - When adding fonts, be sure to add them to the globalStyles object here:
-      //       https://github.com/BBC-News/simorgh/blob/latest/src/app/lib/globalStyles.js#L5
+      //       https://github.com/BBC-News/SPARTACUS_/blob/latest/src/app/lib/globalStyles.js#L5
       //       'https://gel.files.bbci.co.uk/r2.302/BBCReithSans_W_Lt.woff2',
       //       'https://gel.files.bbci.co.uk/r2.302/BBCReithSans_W_Lt.woff',
       //       'https://gel.files.bbci.co.uk/r2.302/BBCReithSerif_W_Lt.woff2',

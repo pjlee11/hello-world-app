@@ -1,4 +1,4 @@
-import "isomorphic-fetch";
+import 'isomorphic-fetch';
 
 // This method is currently passed with the routes to `react-universal-app`
 const getInitialData = async ({ match }) => {
@@ -7,7 +7,7 @@ const getInitialData = async ({ match }) => {
     const { id, service, amp } = match.params;
 
     // This is the URL for your data path using the matched params from react router
-    const url = `${process.env.SIMORGH_BASE_URL}/${service}/${id}.json`;
+    const url = `${process.env.SPARTACUS_BASE_URL}/${service}/${id}.json`;
 
     const response = await fetch(url);
 
@@ -17,7 +17,7 @@ const getInitialData = async ({ match }) => {
     return {
       isAmp,
       data,
-      service
+      service,
     };
   } catch (error) {
     console.log(error); // eslint-disable-line no-console

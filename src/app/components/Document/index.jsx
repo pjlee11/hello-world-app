@@ -1,5 +1,5 @@
 /*
- * With simorgh acting as a library it should be installed into an application. The application should then define it's
+ * With SPARTACUS_ acting as a library it should be installed into an application. The application should then define it's
  * own components and containers. It must supply a Document component as the wrapper for the HTML document.
  * This a hello world example of a Document component
  */
@@ -9,7 +9,7 @@ import ResourceHints from './ResourceHints';
 
 /* eslint-disable react/prop-types */
 const Document = ({ assets, app, data, styleTags, helmet }) => {
-  // Bundle up the data so that simorgh on the client has the same data as the server to stop a flicker in content
+  // Bundle up the data so that SPARTACUS_ on the client has the same data as the server to stop a flicker in content
   const serialisedData = JSON.stringify(data);
 
   // helmet is used to populate the <head> of the document as React doesn't handle script and style tags nicely.
@@ -49,10 +49,10 @@ const Document = ({ assets, app, data, styleTags, helmet }) => {
         {/* eslint-disable react/no-danger */
         /* disabling the rule that bans the use of dangerouslySetInnerHTML until a more appropriate implementation can be implemented */}
         <div id="root" dangerouslySetInnerHTML={{ __html: app }} />
-        {/* Pass through the server data to simorgh on the client  */}
+        {/* Pass through the server data to SPARTACUS_ on the client  */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.SIMORGH_DATA=${serialisedData}`,
+            __html: `window.SPARTACUS_DATA=${serialisedData}`,
           }}
         />
         {/* Add the other scripts created from the static assets, such as JS vendor bundles */}

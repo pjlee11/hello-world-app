@@ -1,5 +1,5 @@
 /*
- * TO DO: load the webpack config in from `simorgh-render/webpack/*`
+ * TO DO: load the webpack config in from `SPARTACUS_-render/webpack/*`
  */
 
 /* eslint-disable import/no-dynamic-require, global-require */
