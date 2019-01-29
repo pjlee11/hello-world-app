@@ -53,7 +53,7 @@ module.exports = ({ resolvePath, IS_CI, IS_PROD, START_DEV_SERVER }) => {
         maxSize: 245760, // 240kb
         cacheGroups: {
           vendor: {
-            test: /[\\/]node_modules[\\/]/,
+            test: /SPArtacus\/node_modules[\/]/,
             name: 'vendor',
           },
         },
