@@ -15,6 +15,7 @@ A Hello world app acting as an example case of using the SPArtacus
 
 ## Notes
 - Hot Module Reloading currently isn't working - there is an issue to fix it. This means we need to run `rs` to restart the server following code changes. Sometimes it will require kill the node server process `ctrl + c` and then re-running `npm run dev`. 
+- The `data/` directory and `global.dataPathRegex` is only required if you want to use static fixture data which is served using a Express server matching against the `${global.dataPathRegex}.json`.
 
 ## Commands
 
