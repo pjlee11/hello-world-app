@@ -34,18 +34,18 @@ src/
   client.js
   index.js
   app/
-  components/
-    Document/
-      index.jsx
-      ResourceHints/
+    components/
+      Document/
         index.jsx
-    {Your components here}
-  containers/
-    {Your top level containers here}
-  routes/
-    index.jsx
-    getInitialData/
+        ResourceHints/
+          index.jsx
+      {Your components here}
+    containers/
+      {Your top level containers here}
+    routes/
       index.jsx
+      getInitialData/
+        index.jsx
 .babelrc
 .env
 package.json
