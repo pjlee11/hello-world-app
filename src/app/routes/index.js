@@ -1,10 +1,9 @@
 import HelloWorld from '../containers/HelloWorld';
 import getInitialData from './getInitialData';
-import services from '../lib/config/services';
 
-const serviceRegex = Object.keys(services)
-  .filter(serviceName => serviceName !== 'default')
-  .join('|');
+const services = ['news', 'persian'];
+
+const serviceRegex = services.join('|');
 
 // this gets passed to universal-react-app which passes the regex on to react-router-config
 export const regexPath = `/:service(${serviceRegex})/:id?`;
