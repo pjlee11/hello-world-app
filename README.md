@@ -30,6 +30,12 @@ A Hello world app acting as an example case of using the SPArtacus
 Your application should have the following structure:
 
 ```
+.babelrc
+.env
+package.json
+webpack.config.client.js
+webpack.config.js
+webpack.config.server.js
 src/
   client.js
   index.js
@@ -46,12 +52,6 @@ src/
       index.jsx
       getInitialData/
         index.jsx
-.babelrc
-.env
-package.json
-webpack.config.client.js
-webpack.config.js
-webpack.config.server.js
 ```
 
 ### File breakdown
