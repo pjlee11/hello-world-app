@@ -30,28 +30,28 @@ A Hello world app acting as an example case of using the SPArtacus
 Your application should have the following structure:
 
 ```
-src/
-  client.js
-  index.js
-  app/
-  components/
-    Document/
-      index.jsx
-      ResourceHints/
-        index.jsx
-    {Your components here}
-  containers/
-    {Your top level containers here}
-  routes/
-    index.jsx
-    getInitialData/
-      index.jsx
 .babelrc
 .env
 package.json
 webpack.config.client.js
 webpack.config.js
 webpack.config.server.js
+src/
+  client.js
+  index.js
+  app/
+    components/
+      Document/
+        index.jsx
+        ResourceHints/
+          index.jsx
+      {Your components here}
+    containers/
+      {Your top level containers here}
+    routes/
+      index.jsx
+      getInitialData/
+        index.jsx
 ```
 
 ### File breakdown
