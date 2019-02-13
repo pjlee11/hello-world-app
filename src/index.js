@@ -6,6 +6,7 @@ import { ServerStyleSheet } from 'styled-components';
 global.documentComponent = Document; // a <html> document React component
 global.dataPathRegex = regexPath; // the regex path
 global.routes = routes;
+global.module = module;
 
 /*
  * 'styled-components' needs to be a singleton so it is set as a dependency of the top level application and the

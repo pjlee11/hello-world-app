@@ -13,7 +13,7 @@ module.exports = ({ resolvePath, START_DEV_SERVER }) => {
           // stop hoisting before polyfill runs https://github.com/babel/babel-preset-env/issues/112#issuecomment-292675082
           'babel-polyfill',
           'webpack/hot/poll?100',
-          './src/index.js',
+          './src',
         ]
       : ['babel-polyfill', './src'],
     output: {
@@ -30,6 +30,13 @@ module.exports = ({ resolvePath, START_DEV_SERVER }) => {
       }),
     ],
     watch: true,
+    node: {
+      /**
+       * Override webpacks default handling of __dirname
+       * which replaces it with '/'.
+       */
+      __dirname: false,
+    },
   };
 
   if (START_DEV_SERVER) {
