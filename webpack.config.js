@@ -15,6 +15,4 @@ if (result.error) {
   throw result.error;
 }
 
-const setupWebpack = require('@bbc/spartacus/webpack.config');
-
-module.exports = setupWebpack();
+module.exports = require('@bbc/spartacus/webpack.config');
