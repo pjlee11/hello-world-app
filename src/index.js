@@ -18,11 +18,4 @@ require('@bbc/spartacus/index');
 
 if (module.hot) {
   module.hot.accept();
-
-  console.log(module.hot.status() === 'apply');
-
-  if (module.hot.status() === 'apply') {
-    const { hotReloadServer } = require('@bbc/spartacus/index');
-    hotReloadServer();
-  }
 }
