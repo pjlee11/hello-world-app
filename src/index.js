@@ -16,13 +16,6 @@ global.ServerStyleSheet = ServerStyleSheet;
 // inject SPArtacus/index and instantly execute
 require('@bbc/spartacus/index');
 
-// this will use the cached version of the previous require
-const { hotReloadServer } = require('@bbc/spartacus/index');
-
 if (module.hot) {
-  console.log('✅  Server-side Hot Module Replacement enabled');
-
-  module.hot.accept('./server', () => {
-    hotReloadServer();
-  });
+  module.hot.accept();
 }
