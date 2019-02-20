@@ -1,28 +1,40 @@
 import 'isomorphic-fetch';
 
-// This method is currently passed with the routes to `react-universal-app`
+const upstreamStatusCodesToPropagate = [200, 404];
+
 const getInitialData = async ({ match }) => {
+  // These are matched params as compared to the regex defined in src/app/routes/index.js
+  const { id, service, amp } = match.params;
+
+  // This is the URL for your data path using the matched params from react router
+  const url = `${process.env.SPARTACUS_BASE_URL}/${service}/${id}.json`;
+
+  let data;
+  let status;
+
   try {
-    // These are matched params as compared to the regex defined in src/app/routes/index.js
-    const { id, service, amp } = match.params;
-
-    // This is the URL for your data path using the matched params from react router
-    const url = `${process.env.SPARTACUS_BASE_URL}/${service}/${id}.json`;
-
     const response = await fetch(url);
 
-    const data = await response.json();
-    const isAmp = !!amp;
+    status = response.status; // eslint-disable-line prefer-destructuring
 
-    return {
-      isAmp,
-      data,
-      service,
-    };
+    if (status === 200) {
+      data = await response.json();
+    } else if (!upstreamStatusCodesToPropagate.includes(status)) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Unexpected upstream response (HTTP status code ${status}) when requesting ${url}`,
+      );
+      status = 502;
+    }
   } catch (error) {
-    console.log(error); // eslint-disable-line no-console
-    return {};
+    status = 502;
   }
+
+  return {
+    data,
+    service,
+    status,
+  };
 };
 
 export default getInitialData;
