@@ -2,4 +2,4 @@
 import routes from './app/routes';
 import { setupClient } from '@bbc/spartacus/client';
 
-setupClient(routes);
+setupClient(routes, module);
