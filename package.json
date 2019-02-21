@@ -20,7 +20,7 @@
   "author": "pjlee",
   "license": "Apache-2.0",
   "dependencies": {
-    "@bbc/spartacus": "^0.0.4",
+    "@bbc/spartacus": "^0.0.6",
     "assets-webpack-plugin": "^3.9.7",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
