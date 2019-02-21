@@ -1,21 +1,16 @@
-import Document from './app/components/Document';
-import routes, { regexPath } from './app/routes';
-import { ServerStyleSheet } from 'styled-components';
+import { setupServer } from '@bbc/spartacus/index';
+const expressServer = require('./server').default;
 
-// setup global variables for SPArtacus to use at build time
-global.documentComponent = Document; // a <html> document React component
-global.dataPathRegex = regexPath; // the regex path
-global.routes = routes;
+const server = setupServer(expressServer);
 
-/*
- * 'styled-components' needs to be a singleton so it is set as a dependency of the top level application and the
- * parts of it that 'SPArtacus' requires are injected as globals EG: ServerStyleSheet()
- */
-global.ServerStyleSheet = ServerStyleSheet;
-
-// inject SPArtacus/index and instantly execute
-require('@bbc/spartacus/index');
+let currentApp = expressServer;
 
 if (module.hot) {
-  module.hot.accept();
+  module.hot.accept('./server', () => {
+    console.log('🔁  Hot Module Replacement reloading `./server`...');
+    server.removeListener('request', currentApp);
+    const newApp = require('./server').default; // eslint-disable-line global-require
+    server.on('request', newApp);
+    currentApp = newApp;
+  });
 }
