@@ -20,6 +20,7 @@ const HelloWorldContainer = ({ loading, error, data }) => {
         <GlobalStyle />
         <HelloWorld>{title}</HelloWorld>
         <h2>{subHeading}</h2>
+        <h2>{subHeading}</h2>
         <p>{JSON.stringify(pageData)}</p>
         <ReactRouterLink href={link} text={'SPA link'} />
       </Fragment>

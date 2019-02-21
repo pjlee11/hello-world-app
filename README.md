@@ -15,8 +15,7 @@ A Hello world app acting as an example case of using the SPArtacus
 
 ## Notes
 
-- Hot Module Reloading currently isn't working - there is an issue to fix it. This means we need to run `rs` to restart the server following code changes. Sometimes it will require kill the node server process `ctrl + c` and then re-running `npm run dev`.
-- The `data/` directory and `global.dataPathRegex` is only required if you want to use static fixture data which is served using a Express server matching against the `${global.dataPathRegex}.json`.
+- Hot Module Reloading on the server currently isn't working - there is an issue to fix it. This means we need to run `rs` to restart the server following code changes. Sometimes it will require kill the node server process `ctrl + c` and then re-running `npm run dev`.
 
 ## Commands
 
@@ -55,15 +54,15 @@ src/
 
 ### File breakdown
 
-| Filename                        | Purpose                                                                                                                                                                                                             |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| src/client.js                   | Entry point for webpack.config.client.js by default should setup up global values and contain `require(SPArtacus/client.js)`                                                                                        |
-| src/index.js                    | Entry point for webpack.config.server.js sets up global varaibles needed for SPArtacus to create your application, also requires `SPArtacus/index.js` which creates the local server and application express server |
-| webpack.config.js               | Webpack entry point which calls SPArtacus shared webpack-congfig                                                                                                                                                    |
-| .env                            | A file that configures environment varaibles                                                                                                                                                                        |
-| .babelrc                        | Babel config that webpack uses                                                                                                                                                                                      |
-| routes/index.jsx                | Creates and exports the application routes and the regexPath to match routes against                                                                                                                                |
-| routes/getInitialData/index.jsx | Method for data fetching on both the server and the client. This method is passed along with the routes to the SPArtacus                                                                                            |
-| \_                              | \_                                                                                                                                                                                                                  |
+| Filename                        | Purpose                                                                                                                  |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| src/client.js                   | Entry point for webpack.config.client.js                                                                                 |
+| src/index.js                    | Entry point for webpack.config.server.js                                                                                 |
+| webpack.config.js               | Webpack entry point which calls SPArtacus shared webpack-congfig                                                         |
+| .env                            | A file that configures environment varaibles                                                                             |
+| .babelrc                        | Babel config that webpack uses                                                                                           |
+| routes/index.jsx                | Creates and exports the application routes and the regexPath to match routes against                                     |
+| routes/getInitialData/index.jsx | Method for data fetching on both the server and the client. This method is passed along with the routes to the SPArtacus |
+| \_                              | \_                                                                                                                       |
 
 to be continued...
