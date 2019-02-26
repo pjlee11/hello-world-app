@@ -10,7 +10,7 @@ import {
   loadInitialData,
   ServerApp,
 } from '@bbc/spartacus/utilities';
-import { expressServer } from '@bbc/spartacus/server';
+import expressServer from '@bbc/spartacus/server';
 import Document from '../app/components/Document';
 import routes, { regexPath } from '../app/routes';
 import Logger from '@bbc/spartacus/logger';
