@@ -13,7 +13,7 @@ import {
 import { expressServer } from '@bbc/spartacus/server';
 import Document from '../app/components/Document';
 import routes, { regexPath } from '../app/routes';
-import { Logger } from '@bbc/spartacus/logger';
+import Logger from '@bbc/spartacus/logger';
 
 const logger = Logger(__filename);
 

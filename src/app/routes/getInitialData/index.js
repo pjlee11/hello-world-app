@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import { Logger } from '@bbc/spartacus/logger';
+import Logger from '@bbc/spartacus/logger';
 
 const logger = Logger(__filename);
 
