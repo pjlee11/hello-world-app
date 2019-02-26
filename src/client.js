@@ -1,8 +1,5 @@
+/* eslint-disable react/jsx-filename-extension  */
 import routes from './app/routes';
-global.routes = routes;
+import { setupClient } from '@bbc/spartacus/client';
 
-require('@bbc/spartacus/client');
-
-if (module.hot) {
-  module.hot.accept();
-}
+setupClient(routes, module);
