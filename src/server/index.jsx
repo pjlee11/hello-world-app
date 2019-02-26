@@ -1,52 +1,20 @@
 import fs from 'fs';
 import path from 'path';
-import React from 'react';
-import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
-import {
-  getAssetsArray,
-  getStyleTag,
-  loadInitialData,
-  ServerApp,
-} from '@bbc/spartacus/utilities';
+import ResourceHints from '../app/components/ResourceHints';
+import { loadInitialData } from '@bbc/spartacus/utilities';
+import renderDocument from '@bbc/spartacus/document';
 import expressServer from '@bbc/spartacus/server';
-import Document from '../app/components/Document';
 import routes, { regexPath } from '../app/routes';
 import Logger from '@bbc/spartacus/logger';
 
 const logger = Logger(__filename);
 
-const assets = getAssetsArray();
-
 const dataFolderToRender =
   process.env.NODE_ENV === 'production' ? 'data/prod' : 'data/test';
 
 const dataRegexPath = `${regexPath}.json`;
-
-const renderArticle = async (url, data) => {
-  const sheet = new ServerStyleSheet();
-
-  const app = renderToString(
-    sheet.collectStyles(
-      <ServerApp location={url} routes={routes} data={data} context={{}} />,
-    ),
-  );
-
-  const headHelmet = Helmet.renderStatic();
-
-  const doc = renderToStaticMarkup(
-    <Document
-      assets={assets}
-      app={app}
-      data={data}
-      styleTags={getStyleTag(sheet, data.isAmp)}
-      helmet={headHelmet}
-    />,
-  );
-
-  return doc;
-};
 
 expressServer
   .get(dataRegexPath, async ({ params }, res) => {
@@ -73,9 +41,17 @@ expressServer
       const data = await loadInitialData(url, routes);
       const { status } = data;
 
-      res
-        .status(status)
-        .send(`<!doctype html>${await renderArticle(url, data)}`);
+      res.status(status).send(
+        // Render a HTML document using style-components and react-helmet
+        await renderDocument(
+          url,
+          data,
+          routes,
+          ResourceHints,
+          ServerStyleSheet, // needed for styled-components to remain a singleton
+          Helmet,
+        ),
+      );
     } catch ({ message, status }) {
       // Return an internal server error for any uncaught errors
       logger.error(`status: ${status || 500} - ${message}`);
