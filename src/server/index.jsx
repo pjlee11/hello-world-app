@@ -13,6 +13,9 @@ import {
 import { expressServer } from '@bbc/spartacus/server';
 import Document from '../app/components/Document';
 import routes, { regexPath } from '../app/routes';
+import { nodeLogger } from '@bbc/spartacus/loggers';
+
+const logger = nodeLogger(__filename);
 
 const assets = getAssetsArray();
 
@@ -54,7 +57,7 @@ expressServer
     fs.readFile(dataFilePath, (error, data) => {
       if (error) {
         res.sendStatus(404);
-        // logger.error(`error reading fixture json, ${error}`);
+        logger.error(`error reading fixture json, ${error}`);
         return null;
       }
 
@@ -75,7 +78,7 @@ expressServer
         .send(`<!doctype html>${await renderArticle(url, data)}`);
     } catch ({ message, status }) {
       // Return an internal server error for any uncaught errors
-      // logger.error(`status: ${status || 500} - ${message}`);
+      logger.error(`status: ${status || 500} - ${message}`);
       res.status(500).send(message);
     }
   });

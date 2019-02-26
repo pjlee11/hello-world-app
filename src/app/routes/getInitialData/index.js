@@ -1,4 +1,7 @@
 import 'isomorphic-fetch';
+import { nodeLogger } from '@bbc/spartacus/loggers';
+
+const logger = nodeLogger(__filename);
 
 const upstreamStatusCodesToPropagate = [200, 404];
 
@@ -21,12 +24,13 @@ const getInitialData = async ({ match }) => {
       data = await response.json();
     } else if (!upstreamStatusCodesToPropagate.includes(status)) {
       // eslint-disable-next-line no-console
-      console.warn(
+      logger.warn(
         `Unexpected upstream response (HTTP status code ${status}) when requesting ${url}`,
       );
       status = 502;
     }
   } catch (error) {
+    logger.error(error);
     status = 502;
   }
 
