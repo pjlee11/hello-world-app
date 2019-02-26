@@ -13,9 +13,9 @@ import {
 import { expressServer } from '@bbc/spartacus/server';
 import Document from '../app/components/Document';
 import routes, { regexPath } from '../app/routes';
-import { nodeLogger } from '@bbc/spartacus/loggers';
+import { Logger } from '@bbc/spartacus/logger';
 
-const logger = nodeLogger(__filename);
+const logger = Logger(__filename);
 
 const assets = getAssetsArray();
 

@@ -1,7 +1,7 @@
 import { setupServer } from '@bbc/spartacus/index';
-import { nodeLogger } from '@bbc/spartacus/loggers';
+import { Logger } from '@bbc/spartacus/logger';
 
-const logger = nodeLogger(__filename);
+const logger = Logger(__filename);
 const expressServer = require('./server').default;
 
 const server = setupServer(expressServer);

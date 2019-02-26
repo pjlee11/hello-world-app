@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
-import { nodeLogger } from '@bbc/spartacus/loggers';
+import { Logger } from '@bbc/spartacus/logger';
 
-const logger = nodeLogger(__filename);
+const logger = Logger(__filename);
 
 const upstreamStatusCodesToPropagate = [200, 404];
 
