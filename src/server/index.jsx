@@ -9,7 +9,7 @@ import {
   getStyleTag,
   loadInitialData,
   ServerApp,
-} from '@bbc/spartacus/utility';
+} from '@bbc/spartacus/utilities';
 import { expressServer } from '@bbc/spartacus/server';
 import Document from '../app/components/Document';
 import routes, { regexPath } from '../app/routes';
