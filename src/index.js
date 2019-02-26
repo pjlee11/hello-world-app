@@ -1,4 +1,4 @@
-import { setupServer } from '@bbc/spartacus/index';
+import setupServer from '@bbc/spartacus/index';
 const expressServer = require('./server').default;
 
 const server = setupServer(expressServer);
