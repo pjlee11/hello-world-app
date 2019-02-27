@@ -9,7 +9,7 @@ A Hello world app acting as an example case of using the SPArtacus
 - `git clone git@github.com:pjlee11/hello-world-app.git`
 - `cd hello-world-app`
 - `npm install`
-- `npm run dev`
+- `npm run build && npm run start` OR `npm run dev`
 - Visit http://localhost:7080/news/helloWorld
 - Drink coffee - you deserve it!
 
