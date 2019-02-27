@@ -37,32 +37,31 @@ webpack.config.js
 src/
   client.js
   index.js
+  server/
+    index.jsx {Your Express server config}
   app/
     components/
-      Document/
-        index.jsx
-        ResourceHints/
-          index.jsx
+      ResourceHints/
+        index.jsx {Your prefetch and preload URLs here}
       {Your components here}
     containers/
-      {Your top level containers here}
+      {Your containers here}
     routes/
-      index.jsx
+      index.jsx {Your routes here}
       getInitialData/
-        index.jsx
+        index.jsx {Your regex routes param handling here}
 ```
 
 ### File breakdown
 
-| Filename                        | Purpose                                                                                                                  |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| src/client.js                   | Entry point for webpack.config.client.js                                                                                 |
-| src/index.js                    | Entry point for webpack.config.server.js                                                                                 |
-| webpack.config.js               | Webpack entry point which calls SPArtacus shared webpack-congfig                                                         |
-| .env                            | A file that configures environment varaibles                                                                             |
-| .babelrc                        | Babel config that webpack uses                                                                                           |
-| routes/index.jsx                | Creates and exports the application routes and the regexPath to match routes against                                     |
-| routes/getInitialData/index.jsx | Method for data fetching on both the server and the client. This method is passed along with the routes to the SPArtacus |
-| \_                              | \_                                                                                                                       |
+| Filename                        | Purpose                              | 
+| ------------------------------- | ------------------------------------ |
+| .babelrc                        | Babel config that SPArtacus' webpack uses |
+| .env                            | A file that configures environment varaibles |
+| webpack.config.js               | Webpack entry point which calls SPArtacus shared webpack-config.js |
+| src/client.js                   | Entry point for the client webpack |
+| src/index.js                    | Entry point for the server webpack |
+| server/index.jsx                | Bespoke configuration of the Express server that is setup by SPArtacus |
+| routes/index.jsx                | Creates and exports the application routes and the regexPath to match routes against which defines the params gathered from routing |
+| routes/getInitialData/index.jsx | Method for data fetching on the client and the server. This method is passed along with the routes to SPArtacus |
 
-to be continued...
