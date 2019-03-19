@@ -9,7 +9,7 @@ import expressServer from '@bbc/spartacus/server';
 import routes, { regexPath } from '../app/routes';
 import Logger from '@bbc/spartacus/logger';
 
-const logger = Logger(__filename);
+const logger = Logger(`hello-world-app:${__filename}`);
 
 const dataFolderToRender =
   process.env.NODE_ENV === 'production' ? 'data/prod' : 'data/test';
@@ -36,22 +36,24 @@ expressServer
       return null;
     });
   })
-  .get('/*', async ({ url }, res) => {
+  .get(regexPath, async ({ url }, res) => {
     try {
       const data = await loadInitialData(url, routes);
       const { status } = data;
 
-      res.status(status).send(
+      res
+        .status(status)
         // Render a HTML document using style-components and react-helmet
-        await renderDocument(
-          url,
-          data,
-          routes,
-          ResourceHints,
-          ServerStyleSheet, // needed for styled-components to remain a singleton
-          Helmet,
-        ),
-      );
+        .send(
+          await renderDocument(
+            url,
+            data,
+            routes,
+            ResourceHints,
+            ServerStyleSheet, // needed for styled-components to remain a singleton
+            Helmet,
+          ),
+        );
     } catch ({ message, status }) {
       // Return an internal server error for any uncaught errors
       logger.error(`status: ${status || 500} - ${message}`);

@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import Logger from '@bbc/spartacus/logger';
 
-const logger = Logger(__filename);
+const logger = Logger(`hello-world-app:${__filename}`);
 
 const upstreamStatusCodesToPropagate = [200, 404];
 

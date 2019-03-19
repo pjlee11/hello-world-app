@@ -1,7 +1,7 @@
 import setupServer from '@bbc/spartacus/index';
 import Logger from '@bbc/spartacus/logger';
 
-const logger = Logger(__filename);
+const logger = Logger(`hello-world-app:${__filename}`);
 const app = require('./server').default;
 
 const server = setupServer({ app });
@@ -9,6 +9,8 @@ const server = setupServer({ app });
 let currentApp = app;
 
 if (module.hot) {
+  logger.info('✅  Server-side Hot Module Replacement enabled');
+
   module.hot.accept('./server', () => {
     logger.info('🔁  Hot Module Replacement reloading `./server`...');
     server.removeListener('request', currentApp);
